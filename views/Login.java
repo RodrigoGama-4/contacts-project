@@ -27,10 +27,6 @@ public class Login extends JFrame {
     protected JLabel lblemail;
     protected JTextField txtemail;
 
-    protected JLabel lblprocurar;
-    protected JTextField txtprocurar;
-
-
     public Login(){
         this.start();
     }
@@ -61,28 +57,27 @@ public class Login extends JFrame {
             lblemail = new JLabel("Email: ");
             txtemail = new JTextField(15);
 
-            lblprocurar = new JLabel("Procurar contato");
-            txtprocurar = new JTextField(15);
-
-            pnlForm.add(lblnome);
-            pnlForm.add(txtnome);
-
-            pnlForm.add(lblnum);
-            pnlForm.add(txtnum);
-
-            pnlForm.add(lblemail);
-            pnlForm.add(txtemail);
-
-            pnlForm.add(lblprocurar);
-            pnlForm.add(txtprocurar);
-           
+            adicionarElementos(lblnome, txtnome);
+            adicionarElementos(lblnum, txtnum);
+            adicionarElementos(lblemail, txtemail); 
         }
         return pnlForm;
     }
+
+    private void adicionarElementos(JLabel label_1, JTextField campo_texto){
+        pnlForm.add(label_1);
+        pnlForm.add(campo_texto);
+    }
     
-    public void fecharJanela(){
+    private void fecharJanela(){
         this.setVisible(false);
         this.dispose();
+    }
+
+    private void limparTexto(){
+        txtnome.setText(" ");
+        txtnum.setText("");
+        txtemail.setText("");
     }
 
     public JPanel getpnlBaixo(){
@@ -99,9 +94,7 @@ public class Login extends JFrame {
             botao_limpar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   txtnome.setText(" ");
-                   txtnum.setText("");
-                   txtemail.setText("");
+                   limparTexto();
 
                 }
             });
@@ -126,12 +119,15 @@ public class Login extends JFrame {
             botao_entrar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
-                    System.out.println("ADICIONADO COM SUCESSO");
+                    String regex_celular = "^\\d{9}$";
+                    String regex_nome = "^[a-zA-Z]+$";
 
-                    txtnome.setText(" ");
-                    txtnum.setText("");
-                    txtemail.setText("");
+                    if (txtnum.getText().matches(regex_celular)) {
+                        if (txtnome.getText().matches(regex_nome))
+                            usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
+                            System.out.println("ADICIONADO COM SUCESSO");
+                            limparTexto();
+                    }
                 }
             });
         }
