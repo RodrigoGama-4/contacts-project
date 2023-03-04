@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "RemoverCont",
+            "request": "launch",
+            "mainClass": "views.RemoverCont",
+            "projectName": "ProjetoContatos_a9f0db54"
+        },
+        {
+            "type": "java",
             "name": "ExemploLabelsTextFields",
             "request": "launch",
             "mainClass": "teste.ExemploLabelsTextFields",

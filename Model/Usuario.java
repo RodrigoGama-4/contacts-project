@@ -25,6 +25,10 @@ public class Usuario {
         }
     }
 
+    public int getQuantidadeContatos(){
+        return contatos.size();
+    }
+
     //CRIA UM ARQUIVO DE TEXTO COM OS CONTATOS
     public void listaContato() {
         try {
@@ -46,7 +50,6 @@ public class Usuario {
             }
         }
     }
-
    
     public void mudarContatoNumero(String numeroAntigo, String numero){
         for(Contato item: contatos){
@@ -67,7 +70,6 @@ public class Usuario {
         System.out.println("O nome" + nomeAntigo + "foi alterado com sucesso para " + nome);
     }
 
-  
     public void mudarContatoEmail(String emailAntigo, String email){
         for(Contato item: contatos){
             if (item.getEmail().equals(emailAntigo)){

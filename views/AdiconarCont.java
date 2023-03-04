@@ -7,9 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
-public class Login extends JFrame {
+public class AdiconarCont extends JFrame {
 
     //PANELS
     protected JPanel pnlForm;
@@ -25,7 +26,7 @@ public class Login extends JFrame {
     protected JLabel lblemail;
     protected JTextField txtemail;
 
-    public Login(){
+    public AdiconarCont(){
         this.start();
     }
 
@@ -81,24 +82,24 @@ public class Login extends JFrame {
 
         if (pnlBaixo == null){
             this.pnlBaixo = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            ArrayList<JButton> botoes = new ArrayList<JButton>();
+            String nomesBotoes[] = {"LIMPAR", "FECHAR", "ADICIONAR", "REMOVER"};
 
-            //BOTAO LIMPAR OS DADOS
-            JButton botao_limpar = new JButton("LIMPAR");
-            pnlBaixo.add(botao_limpar);
+            for (int i = 0; i<nomesBotoes.length; i++){
+                JButton botoes_tela = new JButton(nomesBotoes[i]);
+                pnlBaixo.add(botoes_tela);
+                botoes.add(botoes_tela);
+            }
 
-            botao_limpar.addActionListener(new ActionListener() {
+            botoes.get(0).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                    limparTexto();
 
                 }
             });
-        
-            //BOTAO PARA FECHAR A PAGINA
-            JButton botao_fechar = new JButton("FECHAR");
-            pnlBaixo.add(botao_fechar);
 
-            botao_fechar.addActionListener(new ActionListener() {
+            botoes.get(1).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                    fecharJanela();
@@ -107,22 +108,28 @@ public class Login extends JFrame {
                 }     
             });
 
-            //BOTAO PARA ADICIONAR OS CONTATOS
-            JButton botao_entrar = new JButton("ADICIONAR");
-            pnlBaixo.add(botao_entrar);
-
-            botao_entrar.addActionListener(new ActionListener() {
+            botoes.get(2).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String regex_celular = "^\\d{9}$";
-                    String regex_nome = "^[a-zA-Z]+$";
-
-                    if (txtnum.getText().matches(regex_celular) && txtnome.getText().matches(regex_nome) ) {              
-                        usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
-                        System.out.println("ADICIONADO COM SUCESSO");
-                        limparTexto();                    
-                    }
+                    usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
+                    System.out.println("ADICIONADO COM SUCESSO");
+                    limparTexto(); 
                 }
+            });
+
+            botoes.get(3).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   if (usuario_padrao.getQuantidadeContatos() > 0){
+                        RemoverCont view_removercont = new RemoverCont();
+                        view_removercont.setVisible(true);
+                        fecharJanela();
+                   }
+                   else{
+                    System.out.println("VOCÊ AINDA NÃO TEM CONTATOS ADICIONADO NA LISTA");
+                   }
+            
+                }     
             });
         }
         return pnlBaixo;
