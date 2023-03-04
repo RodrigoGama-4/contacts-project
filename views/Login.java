@@ -19,11 +19,9 @@ public class Login extends JFrame {
     protected JLabel lblnome;
     protected JTextField txtnome;
 
-    
     protected JLabel lblnum;
     protected JTextField txtnum;
 
-    
     protected JLabel lblemail;
     protected JTextField txtemail;
 
@@ -36,12 +34,9 @@ public class Login extends JFrame {
         this.getContentPane().setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
-
-
         this.getContentPane().add(getpnlForm(), BorderLayout.CENTER);
         this.getContentPane().add(getpnlBaixo(), BorderLayout.PAGE_END);
         this.pack();
-        
     }
 
     public JPanel getpnlForm(){
@@ -122,11 +117,10 @@ public class Login extends JFrame {
                     String regex_celular = "^\\d{9}$";
                     String regex_nome = "^[a-zA-Z]+$";
 
-                    if (txtnum.getText().matches(regex_celular)) {
-                        if (txtnome.getText().matches(regex_nome))
-                            usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
-                            System.out.println("ADICIONADO COM SUCESSO");
-                            limparTexto();
+                    if (txtnum.getText().matches(regex_celular) && txtnome.getText().matches(regex_nome) ) {              
+                        usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
+                        System.out.println("ADICIONADO COM SUCESSO");
+                        limparTexto();                    
                     }
                 }
             });
