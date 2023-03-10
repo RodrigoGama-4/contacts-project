@@ -1,9 +1,8 @@
-package views;
+package views.refactor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 
 public class ListarContatos extends JFrame {

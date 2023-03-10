@@ -43,8 +43,8 @@ public class RemoverCont extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     fecharjanelaRC();
-                    AdiconarCont login = new AdiconarCont();
-                    login.setVisible(true);
+                    //AdiconarCont login = new AdiconarCont();
+                    //login.setVisible(true);
                 }
             });
         }

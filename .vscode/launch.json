@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Applica",
+            "request": "launch",
+            "mainClass": "views.Applica",
+            "projectName": "ProjetoContatos_a9f0db54"
+        },
+        {
+            "type": "java",
             "name": "RemoverCont",
             "request": "launch",
             "mainClass": "views.RemoverCont",

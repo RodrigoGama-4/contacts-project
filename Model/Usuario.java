@@ -13,7 +13,7 @@ public class Usuario {
         contatos.add(contato);
         System.out.println("CONTATO ADICIONADO COM SUCESSO");
         //ORDENA OS CONTATOS
-        Collections.sort(contatos);
+        //Collections.sort(contatos);
     }
    
     public void removerContato(String nome) {

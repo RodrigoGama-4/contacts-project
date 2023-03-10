@@ -1,4 +1,4 @@
-package views;
+package views.refactor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +8,6 @@ import java.awt.event.ActionListener;
 import Model.Usuario;
 import java.util.*;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.function.*;
-import views.IBtnAction;
 import Model.Contato;
 
 public class ActionsPanel {

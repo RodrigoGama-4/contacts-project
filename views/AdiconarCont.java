@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class AdiconarCont extends JFrame {
@@ -111,9 +113,18 @@ public class AdiconarCont extends JFrame {
             botoes.get(2).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
-                    System.out.println("ADICIONADO COM SUCESSO");
-                    limparTexto(); 
+                    //REGEX DO CELULAR
+                    String regex_celular = "^\\d{9}$";
+                    Pattern pattern = Pattern.compile(regex_celular);
+                    Matcher matcher = pattern.matcher(txtnum.getText());
+
+                    if (matcher.matches()) {
+                        usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
+                        System.out.println("ADICIONADO COM SUCESSO");
+                        limparTexto();
+                    } else {
+                        System.out.println("Número de celular inválido.");
+                    }
                 }
             });
 
@@ -122,13 +133,11 @@ public class AdiconarCont extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                    if (usuario_padrao.getQuantidadeContatos() > 0){
                         RemoverCont view_removercont = new RemoverCont();
-                        view_removercont.setVisible(true);
-                        fecharJanela();
+                        view_removercont.setVisible(true);  
                    }
                    else{
                     System.out.println("VOCÊ AINDA NÃO TEM CONTATOS ADICIONADO NA LISTA");
                    }
-            
                 }     
             });
         }
