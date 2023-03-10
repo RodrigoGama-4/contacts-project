@@ -1,6 +1,9 @@
 package views;
 
 import javax.swing.*;
+
+import Model.Usuario;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +14,14 @@ public class RemoverCont extends JFrame{
     protected JPanel pnlForm;
     protected JPanel pnlBaixo;
 
-    public RemoverCont(){
+    //Usuario de adicionarCont
+    private Usuario user_padrao;
+
+    //caixa de texto
+    protected JTextField txtnome;
+
+    public RemoverCont(Usuario user_padrao){
+        this.user_padrao = user_padrao;
         this.start();
     }
 
@@ -30,6 +40,19 @@ public class RemoverCont extends JFrame{
         this.pack();
     }
 
+    private JPanel getpnlForm() {
+        if(pnlForm == null){
+            pnlForm = new JPanel(new GridLayout(4, 2));
+
+            JLabel lblnome = new JLabel("Remover: ");
+            txtnome = new JTextField(10);
+
+            pnlForm.add(lblnome);
+            pnlForm.add(txtnome);
+        }
+        return pnlForm;
+    }
+
     private JPanel getpnlBaixo() {
         if (pnlBaixo == null){
             pnlBaixo = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -43,26 +66,20 @@ public class RemoverCont extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     fecharjanelaRC();
-                    //AdiconarCont login = new AdiconarCont();
-                    //login.setVisible(true);
+                }
+            });
+
+            botao_remover.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                  user_padrao.removerContato(txtnome.getText());
                 }
             });
         }
         return pnlBaixo;
     }
 
-    private JPanel getpnlForm() {
-        if(pnlForm == null){
-            pnlForm = new JPanel(new GridLayout(4, 2));
-
-            JLabel lblnome = new JLabel("Remover: ");
-            JTextField txtnome = new JTextField(10);
-
-            pnlForm.add(lblnome);
-            pnlForm.add(txtnome);
-        }
-        return pnlForm;
-    }
+   
 
     /*public static void main(String[] args) {
         RemoverCont kkk = new RemoverCont();

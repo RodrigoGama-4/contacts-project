@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+
 public class AdiconarCont extends JFrame {
 
     //PANELS
@@ -132,7 +133,7 @@ public class AdiconarCont extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                    if (usuario_padrao.getQuantidadeContatos() > 0){
-                        RemoverCont view_removercont = new RemoverCont();
+                        RemoverCont view_removercont = new RemoverCont(usuario_padrao);
                         view_removercont.setVisible(true);  
                    }
                    else{
