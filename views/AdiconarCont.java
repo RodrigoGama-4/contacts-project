@@ -73,7 +73,7 @@ public class AdiconarCont extends JFrame {
     private void aumentarTela(){
         this.setSize(600, 200);
     }
-    
+
     private void fecharJanela(){
         this.setVisible(false);
         this.dispose();
@@ -112,7 +112,7 @@ public class AdiconarCont extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                    fecharJanela();
-                   usuario_padrao.listaContato();
+                   usuario_padrao.salvarContatos();
             
                 }     
             });
@@ -137,11 +137,12 @@ public class AdiconarCont extends JFrame {
                 }
             });
 
+            AdiconarCont retorneThis = this;
             botoes.get(3).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                    if (usuario_padrao.getQuantidadeContatos() > 0){
-                        RemoverCont view_removercont = new RemoverCont(usuario_padrao);
+                        RemoverCont view_removercont = new RemoverCont(usuario_padrao, retorneThis);
                         view_removercont.setVisible(true);  
                    }
                    else{

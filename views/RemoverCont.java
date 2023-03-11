@@ -16,12 +16,14 @@ public class RemoverCont extends JFrame{
 
     //Usuario de adicionarCont
     private Usuario user_padrao;
+    private AdiconarCont view_removercont;
 
     //caixa de texto
     protected JTextField txtnome;
 
-    public RemoverCont(Usuario user_padrao){
+    public RemoverCont(Usuario user_padrao, AdiconarCont view_removercont){
         this.user_padrao = user_padrao;
+        this.view_removercont = view_removercont;
         this.start();
     }
 
@@ -54,7 +56,7 @@ public class RemoverCont extends JFrame{
         }
         return pnlForm;
     }
-
+    
     private JPanel getpnlBaixo() {
         if (pnlBaixo == null){
             pnlBaixo = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -71,12 +73,13 @@ public class RemoverCont extends JFrame{
                 }
             });
 
+            
             botao_remover.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     user_padrao.removerContato(txtnome.getText());
-                    if (user_padrao.tamanhoLista() < 2){
-                        
+                    if (user_padrao.getQuantidadeContatos() < 1){
+                        view_removercont.setSize(300, 200);
                     }
                     fecharjanelaRC();
                 }

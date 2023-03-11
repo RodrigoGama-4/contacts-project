@@ -2,7 +2,7 @@ package Model;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Collections;
+//import java.util.Collections;
 
 
 public class Usuario {
@@ -16,10 +16,6 @@ public class Usuario {
         //Collections.sort(contatos);
     }
 
-    public int tamanhoLista(){
-        return contatos.size();
-    }
-   
     public void removerContato(String nome) {
         for (int i = 0; i < contatos.size(); i++){
             if (contatos.get(i).getNome_amigo().equals(nome)){
@@ -34,7 +30,7 @@ public class Usuario {
     }
 
     //CRIA UM ARQUIVO DE TEXTO COM OS CONTATOS
-    public void listaContato() {
+    public void salvarContatos() {
         try {
             FileWriter writer = new FileWriter("lista_de_pessoas.txt");
             for(Contato item: contatos){
