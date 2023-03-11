@@ -36,11 +36,12 @@ public class AdiconarCont extends JFrame {
     private void start(){
         this.setTitle("ADICIONAR CONTATOS");
         this.getContentPane().setLayout(new BorderLayout());
+        this.setSize(300, 200);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.getContentPane().add(getpnlForm(), BorderLayout.CENTER);
         this.getContentPane().add(getpnlBaixo(), BorderLayout.PAGE_END);
-        this.pack();
     }
 
     public JPanel getpnlForm(){
@@ -67,6 +68,11 @@ public class AdiconarCont extends JFrame {
         pnlForm.add(label_1);
         pnlForm.add(campo_texto);
     }
+
+    //Logo após a primeira adição de um contato a tela vai aumentar e mostrar o botao remover
+    private void aumentarTela(){
+        this.setSize(600, 200);
+    }
     
     private void fecharJanela(){
         this.setVisible(false);
@@ -74,7 +80,7 @@ public class AdiconarCont extends JFrame {
     }
 
     private void limparTexto(){
-        txtnome.setText(" ");
+        txtnome.setText("");
         txtnum.setText("");
         txtemail.setText("");
     }
@@ -123,6 +129,8 @@ public class AdiconarCont extends JFrame {
                         usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
                         System.out.println("ADICIONADO COM SUCESSO");
                         limparTexto();
+                        aumentarTela();
+                        
                     } else {
                         System.out.println("Número de celular inválido.");
                     }

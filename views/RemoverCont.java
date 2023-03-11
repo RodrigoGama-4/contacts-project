@@ -33,11 +33,13 @@ public class RemoverCont extends JFrame{
     private void start(){
         this.setTitle("ADICIONAR CONTATOS");
         this.getContentPane().setLayout(new BorderLayout());
+        this.setSize(300, 200);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
         this.getContentPane().add(getpnlForm(), BorderLayout.CENTER);
         this.getContentPane().add(getpnlBaixo(), BorderLayout.PAGE_END);
-        this.pack();
+        
     }
 
     private JPanel getpnlForm() {
@@ -72,17 +74,14 @@ public class RemoverCont extends JFrame{
             botao_remover.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                  user_padrao.removerContato(txtnome.getText());
+                    user_padrao.removerContato(txtnome.getText());
+                    if (user_padrao.tamanhoLista() < 2){
+                        
+                    }
+                    fecharjanelaRC();
                 }
             });
         }
         return pnlBaixo;
     }
-
-   
-
-    /*public static void main(String[] args) {
-        RemoverCont kkk = new RemoverCont();
-        kkk.setVisible(true);
-    }*/
 }

@@ -4,7 +4,7 @@ public class Contato implements Comparable<Contato>{
     private String nome_amigo;
     private String numero_celular;
     private String email;
-
+   
     public Contato(String nome_amigo, String numero_celular, String email) {
         this.nome_amigo = nome_amigo;
         this.numero_celular = numero_celular;

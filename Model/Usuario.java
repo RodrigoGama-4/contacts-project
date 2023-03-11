@@ -15,6 +15,10 @@ public class Usuario {
         //ORDENA OS CONTATOS
         //Collections.sort(contatos);
     }
+
+    public int tamanhoLista(){
+        return contatos.size();
+    }
    
     public void removerContato(String nome) {
         for (int i = 0; i < contatos.size(); i++){
