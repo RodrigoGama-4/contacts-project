@@ -8,9 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 
 public class AdiconarCont extends JFrame {
@@ -70,7 +67,7 @@ public class AdiconarCont extends JFrame {
     }
 
     //Logo após a primeira adição de um contato a tela vai aumentar e mostrar o botao remover
-    private void aumentarTela(){
+    public void aumentarTela(){
         this.setSize(600, 200);
     }
 
@@ -79,15 +76,16 @@ public class AdiconarCont extends JFrame {
         this.dispose();
     }
 
-    private void limparTexto(){
+    public void limparCampoTexto(){
         txtnome.setText("");
         txtnum.setText("");
         txtemail.setText("");
     }
-
+ 
     public JPanel getpnlBaixo(){
         //INSTANCIO USUARIO PADRAO
-        Usuario usuario_padrao = new Usuario();
+        Usuario usuario_padrao = new Usuario(this);
+
 
         if (pnlBaixo == null){
             this.pnlBaixo = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -103,7 +101,7 @@ public class AdiconarCont extends JFrame {
             botoes.get(0).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   limparTexto();
+                   limparCampoTexto();
 
                 }
             });
@@ -119,21 +117,8 @@ public class AdiconarCont extends JFrame {
 
             botoes.get(2).addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    //REGEX DO CELULAR
-                    String regex_celular = "^\\d{9}$";
-                    Pattern pattern = Pattern.compile(regex_celular);
-                    Matcher matcher = pattern.matcher(txtnum.getText());
-
-                    if (matcher.matches()) {
-                        usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
-                        System.out.println("ADICIONADO COM SUCESSO");
-                        limparTexto();
-                        aumentarTela();
-                        
-                    } else {
-                        System.out.println("Número de celular inválido.");
-                    }
+                public void actionPerformed(ActionEvent e) {                  
+                    usuario_padrao.addContato(new Contato(txtnome.getText(), txtnum.getText(), txtemail.getText()));
                 }
             });
 
@@ -144,9 +129,6 @@ public class AdiconarCont extends JFrame {
                    if (usuario_padrao.getQuantidadeContatos() > 0){
                         RemoverCont view_removercont = new RemoverCont(usuario_padrao, retorneThis);
                         view_removercont.setVisible(true);  
-                   }
-                   else{
-                    System.out.println("VOCÊ AINDA NÃO TEM CONTATOS ADICIONADO NA LISTA");
                    }
                 }     
             });

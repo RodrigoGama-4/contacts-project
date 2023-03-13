@@ -2,18 +2,33 @@ package Model;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
-//import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import views.AdiconarCont;
 
 
 public class Usuario {
     ArrayList <Contato> contatos = new ArrayList<>();
-    
+
+    private AdiconarCont classeAdiconarCont;
+
+    public Usuario(AdiconarCont classeAdicionar){
+        this.classeAdiconarCont = classeAdicionar;
+    }
+
+
 
     public void addContato(Contato contato) {
-        contatos.add(contato);
-        System.out.println("CONTATO ADICIONADO COM SUCESSO");
-        //ORDENA OS CONTATOS
-        //Collections.sort(contatos);
+        String regex_celular = "^\\d{9}$";
+        Pattern pattern = Pattern.compile(regex_celular);
+        Matcher matcher = pattern.matcher(contato.getNumero_celular());
+        if (matcher.matches()){
+            contatos.add(contato);
+            System.out.println("CONTATO ADICIONADO COM SUCESSO");
+            classeAdiconarCont.limparCampoTexto();
+            classeAdiconarCont.aumentarTela();
+        }    
     }
 
     public void removerContato(String nome) {
@@ -21,6 +36,9 @@ public class Usuario {
             if (contatos.get(i).getNome_amigo().equals(nome)){
                 contatos.remove(i);
                 System.out.println("CONTATO REMOVIDO COM SUCESSO");
+            }
+            else if(contatos.size() < 1){
+                System.out.println("Você não tem contatos adicionados");
             }
         }
     }

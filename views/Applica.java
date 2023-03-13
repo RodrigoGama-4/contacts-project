@@ -7,8 +7,6 @@ public class Applica{
         SwingUtilities.invokeLater(() ->{
             AdiconarCont login = new AdiconarCont();
             login.setVisible(true);
-
-
         }
         );
     }
